@@ -18,6 +18,13 @@ export function createUniqueId() {
  * @returns {Object} return modified array with updated list of category
  */
 export function addDataToCategory(categoryData, id, arr) {
+    if (id.rootLevel) {
+        addDataToCategory(categoryData, {rootLevel: false}, arr);
+        let modifiedCategoryData = getCorrectKey(arr, categoryData);
+        arr.push(modifiedCategoryData);
+        return  arr;
+    }
+
     for (let i = 0; i < arr.length; i++) {
         if (arr[i].categories.length > 0) {
             addDataToCategory(categoryData, id, arr[i].categories);
@@ -30,10 +37,12 @@ export function addDataToCategory(categoryData, id, arr) {
                 case ('addTask'):
                     arr[i].categoryTasksList.push(categoryData.taskName);
                     break;
-                default:
+                case ('addCategory'):
                     let modifiedCategoryData = getCorrectKey(arr[i], categoryData);
                     arr[i].activeCategory = false;
                     arr[i].categories.push(modifiedCategoryData);
+                    break;
+                default:
                     break;
             }
         }
@@ -41,10 +50,7 @@ export function addDataToCategory(categoryData, id, arr) {
             arr[i].activeCategory = false;
         }
     }
-    if (!id) {
-        let modifiedCategoryData = getCorrectKey(arr, categoryData);
-        arr.push(modifiedCategoryData);
-    }
+
     return arr;
 }
 
@@ -56,7 +62,6 @@ export function addDataToCategory(categoryData, id, arr) {
  *
  * @returns {Object} return modified extended categoryData object
  */
-
 export function getCorrectKey(parentItem, data) {
     let copiedData = Object.assign({}, data);
 

@@ -48,11 +48,13 @@ class App extends React.Component {
      * function which add new category
      *
      * @param {String} data - category id
+     * @param {Object} e - event object
      */
-    addCategory = (data) => () => {
+    addCategory = (e, data) => {
         let categoryName = prompt('Please add category', "React");
         if (categoryName != null) {
             let categoryData = {
+                type: 'addCategory',
                 id: 0,
                 name: categoryName,
                 categoryTasksList: [],
@@ -60,7 +62,6 @@ class App extends React.Component {
                 categories: [],
                 activeCategory: true
             };
-
             let resultArr = addDataToCategory(categoryData, data, this.state.categories);
             this.setState({
                 categories: resultArr

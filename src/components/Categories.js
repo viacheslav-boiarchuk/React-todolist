@@ -33,7 +33,7 @@ class Categories extends React.Component {
                                     <span>{item.uniqKey}</span> &nbsp;
                                     {item.name}
                                 </div>
-                                <button onClick={categoryData.addCategory(item.uniqueId)} className="add-subcategories">+</button>
+                                <button onClick={(e)=> categoryData.addCategory(e, item.uniqueId)} className="add-subcategories">+</button>
                             </div>
                             <RenderChildren item={item} tempProps={props} />
                         </li>
