@@ -36,10 +36,9 @@ class TasksList extends React.Component {
         let {props} = this,
             {activeCategories} = this.state,
             RenderChildren = renderChildrenHOC(TasksList, "todolist-inner-container");
-
         return (
             <ul>
-                {!(_.isEmpty(activeCategories)) ?
+                {!(_.isEmpty(activeCategories) || !activeCategories.activeCategory) ?
                     <>
                         <Tasks tasksList={activeCategories} />
                         {activeCategories.categories.map((item, index) => {
@@ -53,7 +52,7 @@ class TasksList extends React.Component {
                             )
                         })}
                     </>
-                    : <div>No tasks yet</div>
+                    : null
                 }
             </ul>
         );

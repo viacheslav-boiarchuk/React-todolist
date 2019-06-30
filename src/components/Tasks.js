@@ -12,17 +12,15 @@ export default function Tasks(props) {
     return (
         <>
             {!(_.isEmpty(tasksList.categoryTasksList)) ?
-                <li>
-                    <ul className="task-list">
-                        {tasksList.categoryTasksList.map((item, index) => {
-                            return (
-                                <li key={'tasks-' + index} >
-                                    {item}
-                                </li>
-                            )
-                        })}
-                    </ul>
-                </li>
+                <>
+                    {tasksList.categoryTasksList.map((item, index) => {
+                        return (
+                            <li key={'tasks-' + index} >
+                                {item}
+                            </li>
+                        )
+                    })}
+                </>
                 : null
             }
         </>
