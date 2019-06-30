@@ -1,5 +1,5 @@
 import React from 'react';
-import {TodoHeader, TodoFooter, TodoSidebar, TodoList, TodoMain} from './components/index';
+import {TodoHeader, TodoFooter, TodoSidebar, TasksContainer, TodoMain} from './components/index';
 import {createUniqueId, addDataToCategory} from './helpers/helpers';
 import './App.css';
 
@@ -114,7 +114,7 @@ class App extends React.Component {
                         categories = {categories}
                         modifyActiveCategory = {this.modifyActiveCategory}
                     />
-                    <TodoList
+                    <TasksContainer
                         addTask={this.addTask}
                         categories = {categories}
                     />

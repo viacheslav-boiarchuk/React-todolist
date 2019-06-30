@@ -54,6 +54,29 @@ export function addDataToCategory(categoryData, id, arr) {
     return arr;
 }
 
+
+/**
+ * Function which return extended active Category will all subcategories
+ *
+ * @param {Object} data - categories list
+ * @param {Object} tempObj - empty object where we will save out current active category data
+ * @param {Function} cb - callback
+ *
+ * @returns {Object} return modified extended categoryData object
+ */
+
+export function getActiveCategory(data, tempObj, cb) {
+    let copiedData = data.slice();
+    for (let i = 0; i < copiedData.length; i++) {
+        if (copiedData[i].activeCategory) {
+            cb(copiedData[i]);
+        }
+        if (copiedData[i].categories.length > 0) {
+            getActiveCategory(copiedData[i].categories, tempObj, cb);
+        }
+    }
+}
+
 /**
  * Function which return extended categoryData with added correct item number to category
  *

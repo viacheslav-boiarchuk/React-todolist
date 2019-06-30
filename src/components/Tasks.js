@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 
 /**
  * Tasks component
@@ -9,14 +10,21 @@ import React from 'react';
 export default function Tasks(props) {
     let {tasksList} = props;
     return (
-        <ul className="task-list">
-            {tasksList.categoryTasksList.map((item, index) => {
-                return (
-                    <li key={'tasks-' + index} >
-                        {item}
-                    </li>
-                )
-            })}
-        </ul>
+        <>
+            {!(_.isEmpty(tasksList.categoryTasksList)) ?
+                <li>
+                    <ul className="task-list">
+                        {tasksList.categoryTasksList.map((item, index) => {
+                            return (
+                                <li key={'tasks-' + index} >
+                                    {item}
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </li>
+                : null
+            }
+        </>
     )
 };

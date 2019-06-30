@@ -16,6 +16,7 @@ export default function renderChildrenHOC(Component, componentClassName) {
             if (item.categories.length > 0) {
                 let updatedProps = Object.assign({}, tempProps.categoryData);
                 updatedProps.categories = item.categories;
+
                 return (
                     <div className={componentClassName}>
                         <Component categoryData={updatedProps} />
@@ -23,9 +24,7 @@ export default function renderChildrenHOC(Component, componentClassName) {
                 )
             }
             else {
-                return (
-                    <></>
-                )
+                return null
             }
         }
     }

@@ -1,19 +1,19 @@
 import React from 'react';
-import CategoriesTasks from './CategoriesTasks';
+import TasksList from './TasksList';
 
 /**
- * List component
+ * TasksContainer component
  *
  * @param {Object} props
  */
 
-export default function TodoList(props) {
+export default function TasksContainer(props) {
     return (
         <div className="todolist-container">
             <button onClick={props.addTask}>Add Task</button>
 
             <div className="todolist-inner-container">
-                <CategoriesTasks categoryData={props} />
+                <TasksList categoryData={props} />
             </div>
         </div>
     )
